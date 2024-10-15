@@ -20,7 +20,7 @@
     ]
   },
   "keywords": [],
-  "author": "Adam Scott",
+  "author": "Baibhab Nayak",
   "license": "MIT",
   "dependencies": {
     "apollo-server-express": "^2.26.2",
