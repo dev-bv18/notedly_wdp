@@ -5,9 +5,10 @@ const helmet = require('helmet');
 const cors = require('cors');
 const depthLimit = require('graphql-depth-limit');
 const { createComplexityLimitRule } = require('graphql-validation-complexity');
+const mongoose=require('mongoose');
 require('dotenv').config();
 
-const db = require('./db');
+//const db = require('./db');
 const models = require('./models');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
@@ -18,8 +19,13 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 //db.connect(DB_HOST);
+mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@notedly.4wygq.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.MONGO_DB}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log(`Connected to MongoDB`))
+.catch((err) => console.log(err));
 
-// Security middleware
 app.use(helmet());
 // CORS middleware
 app.use(cors());
